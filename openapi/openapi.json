@@ -1,11 +1,16 @@
 {
     "openapi": "3.0.0",
+    "x-stoplight": {
+        "id": "pl8lxo8wo7cfn"
+    },
     "info": {
         "description": "This is an unofficial documentation for the official Polimi REST api from the new mobile  app. This is not an official documentation and it is not supported by Polimi. Use at your  own risk.",
         "version": "1.1.2",
         "title": "Polimi API",
         "contact": {
-            "email": "tommaso.morganti@mail.polimi.it"
+            "name": "Tommaso Morganti",
+            "email": "tommaso.morganti@mail.polimi.it",
+            "url": "https://github.com/toto04"
         },
         "license": {
             "name": "No license whatsoever, dont use this",
@@ -24,22 +29,27 @@
     ],
     "tags": [
         {
-            "name": "jaf",
-            "description": "idk how those things are organized"
+            "name": "agenda",
+            "description": "All endpoints regarding events and deadlines"
         },
         {
-            "name": "agenda",
-            "description": "Endpoints for the agenda"
+            "name": "jaf",
+            "description": "JAF endpoints, about app info"
+        },
+        {
+            "name": "news",
+            "description": "Endpoints regarding tags, news and user interests"
+        },
+        {
+            "name": "settings",
+            "description": "User settings"
         }
     ],
     "paths": {
         "/rest/jaf/internal/user": {
             "get": {
-                "tags": [
-                    "jaf"
-                ],
-                "summary": "Get user information",
-                "description": "",
+                "summary": "Get User Info",
+                "description": "get user info",
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -93,6 +103,407 @@
                             }
                         }
                     }
+                },
+                "operationId": "internaluser",
+                "tags": [
+                    "jaf"
+                ]
+            }
+        },
+        "/rest/jaf/public/app": {
+            "get": {
+                "summary": "Get App Info",
+                "tags": [
+                    "jaf"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "description": {
+                                            "type": "string"
+                                        },
+                                        "controllerVersion": {
+                                            "type": "string"
+                                        },
+                                        "viewVersion": {
+                                            "type": "string"
+                                        },
+                                        "capplication": {
+                                            "type": "integer"
+                                        },
+                                        "dbTest": {
+                                            "type": "boolean"
+                                        }
+                                    },
+                                    "x-examples": {
+                                        "Example 1": {
+                                            "description": "PoliMi APP",
+                                            "controllerVersion": "1.1.2",
+                                            "viewVersion": "1.1.2",
+                                            "capplication": 24344,
+                                            "dbTest": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-rest-jaf-public-app",
+                "security": [],
+                "description": "Get the current api version and info"
+            }
+        },
+        "/rest/tags": {
+            "get": {
+                "summary": "Get All Tags",
+                "tags": [
+                    "news"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "x-examples": {
+                                        "Example 1": [
+                                            {
+                                                "event_tag_id": 2,
+                                                "denomination": {
+                                                    "it": "Tecnologia",
+                                                    "en": "Technology"
+                                                }
+                                            },
+                                            {
+                                                "event_tag_id": 7,
+                                                "denomination": {
+                                                    "it": "Scienza",
+                                                    "en": "Science"
+                                                }
+                                            },
+                                            {
+                                                "event_tag_id": 43,
+                                                "denomination": {
+                                                    "it": "Studenti",
+                                                    "en": "Students"
+                                                }
+                                            },
+                                            {
+                                                "event_tag_id": 47,
+                                                "denomination": {
+                                                    "it": "Amministrazione",
+                                                    "en": "Administration"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "event_tag_id": {
+                                                "type": "integer"
+                                            },
+                                            "denomination": {
+                                                "$ref": "#/components/schemas/TranslatedString"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-rest-tags",
+                "description": "returns all the tags available"
+            }
+        },
+        "/rest/me/tags": {
+            "get": {
+                "summary": "Get User Tags",
+                "tags": [
+                    "news"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "x-examples": {
+                                        "Example 1": [
+                                            {
+                                                "event_tag_id": 2,
+                                                "denomination": {
+                                                    "it": "Tecnologia",
+                                                    "en": "Technology"
+                                                }
+                                            },
+                                            {
+                                                "event_tag_id": 7,
+                                                "denomination": {
+                                                    "it": "Scienza",
+                                                    "en": "Science"
+                                                }
+                                            },
+                                            {
+                                                "event_tag_id": 43,
+                                                "denomination": {
+                                                    "it": "Studenti",
+                                                    "en": "Students"
+                                                }
+                                            },
+                                            {
+                                                "event_tag_id": 47,
+                                                "denomination": {
+                                                    "it": "Amministrazione",
+                                                    "en": "Administration"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "event_tag_id": {
+                                                "type": "integer"
+                                            },
+                                            "denomination": {
+                                                "$ref": "#/components/schemas/TranslatedString"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-rest-me-tags",
+                "description": "get the users preferred tags"
+            }
+        },
+        "/rest/me/news/interests": {
+            "get": {
+                "summary": "Get News",
+                "tags": [
+                    "news"
+                ],
+                "parameters": [
+                    {
+                        "name": "start_date",
+                        "in": "query",
+                        "description": "starting date of the interests to show",
+                        "schema": {
+                            "type": "string",
+                            "example": "2022-09-12"
+                        }
+                    },
+                    {
+                        "name": "end_date",
+                        "in": "query",
+                        "description": "ending date of the interests to show",
+                        "schema": {
+                            "type": "string",
+                            "example": "2022-09-15"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "x-examples": {
+                                        "Example 1": [
+                                            {
+                                                "news_id": 164233,
+                                                "title": {
+                                                    "it": "AeroGravity - Svoltastudenti",
+                                                    "en": "AeroGravity - Svoltastudenti"
+                                                },
+                                                "text": {
+                                                    "it": "<p>\r\n\t<strong>6 dicembre 2022</strong><br />\r\n\tdalle 14:30 alle 18:00<br />\r\n\tVia G. D&#39;Annunzio 23, Pero(MI)</p>\r\n<p>\r\n\tHai mai provato l&#39;esperienza del volo? Con Svoltastudenti puoi! AeroGravity è l’unica galleria del vento verticale in Italia che permette di sperimentare la sensazione di volo in tutta sicurezza. L’esperienza avviene in un cilindro di cristallo alto 8 metri. Sarete sempre accompagnati da un istruttore che vi guiderà durante tutto il vostro volo. 42 posti disponibili, iscrizioni a partire dal 17/11/2022, alle ore 18:30!</p>\r\n<p>\r\n\tPer informazioni:<br />\r\n\te-mail: <a href=\"mailto:martina.legnani&#64;svoltastudenti.it\" rel=\"nofollow\">martina.legnani&#64;svoltastudenti.it</a><br />\r\n\t<a href=\"http://svo.lt/a-aero22\" rel=\"nofollow\">svo.lt/a-aero22</a></p>\r\n",
+                                                    "en": "<p>\r\n\t<strong>6 December 2022 </strong><br />\r\n\tfrom 14:30 to 18:00<br />\r\n\tVia G. D&#39;Annunzio 23, Pero(MI)</p>\r\n<p>\r\n\tHave you ever tried the experience of flying? With Svoltastudenti you can! Aero Gravity is the only vertical wind tunnel in Italy that allows you to experience the sensation of flight safely. The experience takes place in an 8-meter-high crystal cylinder. You will always be accompanied by an instructor who will guide you throughout your flight. 42 seats available, registration starting 11/17/2022, at 6:30 pm!</p>\r\n<p>\r\n\tFor information:<br />\r\n\te-mail: <a href=\"mailto:martina.legnani&#64;svoltastudenti.it\" rel=\"nofollow\">martina.legnani&#64;svoltastudenti.it</a><br />\r\n\t<a href=\"http://svo.lt/a-aero22\" rel=\"nofollow\">svo.lt/a-aero22</a></p>\r\n"
+                                                },
+                                                "publication_start": "2022-11-17",
+                                                "publication_end": "2022-12-02",
+                                                "event_start": "2022-12-06T00:00:00",
+                                                "event_end": "2022-12-06T00:00:00",
+                                                "show_agenda": false,
+                                                "tags": [
+                                                    {
+                                                        "event_tag_id": 43,
+                                                        "denomination": {
+                                                            "it": "Studenti",
+                                                            "en": "Students"
+                                                        }
+                                                    }
+                                                ],
+                                                "news_source_id": 3
+                                            },
+                                            {
+                                                "news_id": 164222,
+                                                "title": {
+                                                    "it": "Ciaspolata in Valtellina - BEA",
+                                                    "en": "Ciaspolata in Valtellina - BEA"
+                                                },
+                                                "text": {
+                                                    "it": "<p>\r\n\t<strong>15 dicembre 2022</strong><br />\r\n\tdalle 07:00 alle 19:00<br />\r\n\tVal Gerola<br />\r\n\t<strong>Scadenza iscrizioni: 12 dicembre 2022</strong></p>\r\n<p>\r\n\tMettiti le ciaspole ai piedi e immergiti nella soffice neve della Valtellina, in particolare della Val Gerola, splendida valle delle Alpi Orobie. Accompagnati da due guide esperte svolgeremo un percorso ad anello, lungo il quale scopriremo gli splendidi bianchi paesaggi della zona, tra laghi, palle di neve, risate e pizzoccheri. BEA ti aspetta! (info su &#64;beapolimi IG e Facebook)</p>\r\n<p>\r\n\tPer informazioni:<br />\r\n\te-mail: <a href=\"mailto:events&#64;beapolimi.it\" rel=\"nofollow\">events&#64;beapolimi.it</a></p>\r\n",
+                                                    "en": "<p>\r\n\t<strong>15 December 2022 </strong><br />\r\n\tfrom 07:00 to 19:00<br />\r\n\tVal Gerola<br />\r\n\t<strong>Deadline for registration: 12 December 2022</strong></p>\r\n<p>\r\n\tPut your ciaspole on and immerse yourself in the soft snow of Valtellina, in particular of the Val Gerola, wonderful valley of the Orobie Alps. With the help of two expert guides, we’ll do a ring trip, along which we’ll discover the lovely and white landscapes of the area, among lakes, snowball fights, laughs and pizzoccheri. BEA is waiting for you! (info on &#64;beapolimi IG and Facebook)</p>\r\n<p>\r\n\tFor information:<br />\r\n\te-mail: <a href=\"mailto:events&#64;beapolimi.it\" rel=\"nofollow\">events&#64;beapolimi.it</a></p>\r\n"
+                                                },
+                                                "publication_start": "2022-11-17",
+                                                "publication_end": "2022-12-02",
+                                                "event_start": "2022-12-15T00:00:00",
+                                                "event_end": "2022-12-15T00:00:00",
+                                                "show_agenda": false,
+                                                "tags": [
+                                                    {
+                                                        "event_tag_id": 43,
+                                                        "denomination": {
+                                                            "it": "Studenti",
+                                                            "en": "Students"
+                                                        }
+                                                    }
+                                                ],
+                                                "news_source_id": 3
+                                            },
+                                            {
+                                                "news_id": 164229,
+                                                "title": {
+                                                    "it": "L.A. Snowday 2022 - Lista Aperta",
+                                                    "en": "L.A. Snowday 2022 - Lista Aperta"
+                                                },
+                                                "text": {
+                                                    "it": "<p>\r\n\t<strong>19 dicembre 2022</strong><br />\r\n\tdalle 06:00 alle 21:00<br />\r\n\tPila (AO)</p>\r\n<p>\r\n\tÈ tornata L.A. Snowday, appuntamento ormai iconico e atteso da molti studenti del Poli. Lista Aperta ti porta a sciare a Pila in Valle d&#39;Aosta. Sei pronto? I posti sono limitati…. Le iscrizioni apriranno il 25 novembre alle ore 12:00. Non puoi mancare! Ulteriori informazioni saranno disponibili sul sito di Lista Aperta!</p>\r\n<p>\r\n\tPer informazioni:<br />\r\n\te-mail: <a href=\"mailto:eventi.poli.listaperta&#64;gmail.com\" rel=\"nofollow\">eventi.poli.listaperta&#64;gmail.com</a><br />\r\n\t<a href=\"http://www.poli-listaperta.it/event/LA-Snowday-2022/\" rel=\"nofollow\">www.poli-listaperta.it/event/LA-Snowday-2022/</a></p>\r\n",
+                                                    "en": "<p>\r\n\t<strong>19 December 2022 </strong><br />\r\n\tfrom 06:00 to 21:00<br />\r\n\tPila (AO)</p>\r\n<p>\r\n\tL.A. Snow Day is back, an event that has become iconic and eagerly awaited by many of us students. On 19 December, Lista Aperta takes you skiing in Pila in Valle D’Aosta. Are you ready? Places are limited.... Registration will open on 25 November at 12 noon.You can&#39;t miss it. Further information will be available on the Lista Aperta website!</p>\r\n<p>\r\n\tFor information:<br />\r\n\te-mail: <a href=\"mailto:eventi.poli.listaperta&#64;gmail.com\" rel=\"nofollow\">eventi.poli.listaperta&#64;gmail.com</a><br />\r\n\t<a href=\"http://www.poli-listaperta.it/event/LA-Snowday-2022/\" rel=\"nofollow\">www.poli-listaperta.it/event/LA-Snowday-2022/</a></p>\r\n"
+                                                },
+                                                "publication_start": "2022-11-17",
+                                                "publication_end": "2022-12-02",
+                                                "event_start": "2022-12-19T00:00:00",
+                                                "event_end": "2022-12-19T00:00:00",
+                                                "show_agenda": false,
+                                                "tags": [
+                                                    {
+                                                        "event_tag_id": 43,
+                                                        "denomination": {
+                                                            "it": "Studenti",
+                                                            "en": "Students"
+                                                        }
+                                                    }
+                                                ],
+                                                "news_source_id": 3
+                                            }
+                                        ]
+                                    },
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "news_id": {
+                                                "type": "integer"
+                                            },
+                                            "title": {
+                                                "$ref": "#/components/schemas/TranslatedString"
+                                            },
+                                            "text": {
+                                                "$ref": "#/components/schemas/TranslatedString"
+                                            },
+                                            "publication_start": {
+                                                "type": "string"
+                                            },
+                                            "publication_end": {
+                                                "type": "string"
+                                            },
+                                            "event_start": {
+                                                "type": "string"
+                                            },
+                                            "event_end": {
+                                                "type": "string"
+                                            },
+                                            "show_agenda": {
+                                                "type": "boolean"
+                                            },
+                                            "tags": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "event_tag_id": {
+                                                            "type": "integer"
+                                                        },
+                                                        "denomination": {
+                                                            "$ref": "#/components/schemas/TranslatedString"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "news_source_id": {
+                                                "type": "integer"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-rest-me-news-interests",
+                "description": "Get all the news objects"
+            }
+        },
+        "/rest/me/settings": {
+            "get": {
+                "summary": "Get Settings",
+                "tags": [
+                    "settings"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Settings"
+                                }
+                            }
+                        }
+                    }
+                },
+                "operationId": "get-rest-me-settings",
+                "description": "Get the users settings"
+            },
+            "put": {
+                "summary": "Set Settings",
+                "operationId": "put-rest-me-settings",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Settings"
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": "Update the user's settings",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Settings"
+                            }
+                        }
+                    }
                 }
             }
         },
@@ -101,7 +512,8 @@
                 "tags": [
                     "agenda"
                 ],
-                "summary": "Tutti gli eventi dell'api",
+                "description": "Tutti gli eventi dato il numero di matricola",
+                "summary": "Get Events",
                 "parameters": [
                     {
                         "name": "matricola",
@@ -129,7 +541,8 @@
                         "schema": {
                             "type": "integer"
                         },
-                        "example": 5
+                        "example": 5,
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -166,7 +579,8 @@
                             }
                         }
                     }
-                }
+                },
+                "operationId": "events"
             }
         },
         "/agenda/api/me/{matricola}/deadlines": {
@@ -174,7 +588,7 @@
                 "tags": [
                     "agenda"
                 ],
-                "summary": "Deadlines",
+                "summary": "Get Deadlines",
                 "parameters": [
                     {
                         "name": "matricola",
@@ -219,7 +633,9 @@
                             }
                         }
                     }
-                }
+                },
+                "operationId": "deadlines",
+                "description": "Scadenze"
             }
         }
     },
@@ -355,6 +771,38 @@
                     },
                     "show_agenda": {
                         "type": "boolean"
+                    }
+                }
+            },
+            "Settings": {
+                "type": "object",
+                "properties": {
+                    "theme": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "type": "string"
+                    },
+                    "notifications": {
+                        "type": "object",
+                        "properties": {
+                            "communication": {
+                                "type": "boolean"
+                            },
+                            "event": {
+                                "type": "boolean"
+                            }
+                        }
+                    }
+                },
+                "x-examples": {
+                    "Example 1": {
+                        "theme": "dark",
+                        "language": "IT",
+                        "notifications": {
+                            "communication": true,
+                            "event": true
+                        }
                     }
                 }
             }
