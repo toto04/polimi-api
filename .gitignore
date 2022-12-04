@@ -1,0 +1,4 @@
+# Dir for bundles
+dist
+dist.json
+node_modules
