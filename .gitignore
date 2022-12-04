@@ -3,3 +3,4 @@
 dist
 dist.json
 node_modules
+redoc-static.html
