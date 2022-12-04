@@ -12,3 +12,7 @@ features.openapi:
         colors:
             primary:
                 main: "#32329f"
+    generateCodeSamples:
+        languages:
+            - lang: curl
+              label: Custom label
