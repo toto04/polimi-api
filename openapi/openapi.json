@@ -504,7 +504,10 @@
                             }
                         }
                     }
-                }
+                },
+                "tags": [
+                    "settings"
+                ]
             }
         },
         "/agenda/api/me/{matricola}/events": {
