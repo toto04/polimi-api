@@ -6,6 +6,10 @@
         "title": "Polimi API",
         "contact": {
             "email": "tommaso.morganti@mail.polimi.it"
+        },
+        "license": {
+            "name": "dont",
+            "url": "https://polimi.it"
         }
     },
     "servers": [
@@ -14,6 +18,11 @@
         },
         {
             "url": "http://polimiapp.polimi.it/polimi_app"
+        }
+    ],
+    "security": [
+        {
+            "accessToken": []
         }
     ],
     "tags": [
@@ -95,6 +104,7 @@
                 "tags": [
                     "agenda"
                 ],
+                "summary": "Tutti gli eventi dell'api",
                 "parameters": [
                     {
                         "name": "matricola",
@@ -147,6 +157,7 @@
                 "tags": [
                     "agenda"
                 ],
+                "summary": "Deadlines",
                 "parameters": [
                     {
                         "name": "matricola",
@@ -197,7 +208,7 @@
     },
     "components": {
         "securitySchemes": {
-            "Access Token": {
+            "accessToken": {
                 "type": "http",
                 "scheme": "bearer",
                 "description": "The polimi OAuth access token"

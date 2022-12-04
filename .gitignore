@@ -1,4 +1,5 @@
 # Dir for bundles
+*.DS_Store
 dist
 dist.json
 node_modules
