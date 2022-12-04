@@ -2,13 +2,13 @@
     "openapi": "3.0.0",
     "info": {
         "description": "This is an unofficial documentation for the official Polimi REST api from the new mobile  app. This is not an official documentation and it is not supported by Polimi. Use at your  own risk.",
-        "version": "1.0.5",
+        "version": "1.1.2",
         "title": "Polimi API",
         "contact": {
             "email": "tommaso.morganti@mail.polimi.it"
         },
         "license": {
-            "name": "dont",
+            "name": "No license whatsoever, dont use this",
             "url": "https://polimi.it"
         }
     },
@@ -141,6 +141,26 @@
                                     "type": "array",
                                     "items": {
                                         "$ref": "#/components/schemas/Event"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - invalid matricola",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "statusCode": {
+                                            "type": "number",
+                                            "example": 401
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "(POLIJ_033002) Credenziali insufficienti per determinare correttamente l'abilitazione dell'utente"
+                                        }
                                     }
                                 }
                             }
