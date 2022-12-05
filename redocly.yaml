@@ -7,11 +7,10 @@ extends:
 rules:
     no-unused-components: error
 features.openapi:
-    htmlTemplate: ./docs/index.html
     theme:
         colors:
             primary:
-                main: "#32329f"
+                main: "#30d896"
     generateCodeSamples:
         languages:
             - lang: curl
