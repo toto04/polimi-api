@@ -1,0 +1,19 @@
+header {
+    display: flex;
+    justify-content: center;
+    background: #444;
+    cursor: pointer;
+    // user select non all vendor prefixes
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+
+    h1 {
+        text-align: center;
+        margin: 0;
+        padding: 0.6rem;
+        background: #444;
+        color: #30d896;
+    }
+}

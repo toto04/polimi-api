@@ -1,14 +1,23 @@
 {
-    "name": "acme-api",
-    "version": "1.0.0",
-    "dependencies": {
-        "@redocly/cli": "1.0.0-beta.114",
-        "redoc-cli": "^0.13.20"
-    },
-    "private": true,
-    "scripts": {
-        "start": "redocly preview-docs",
-        "build": "redocly bundle openapi/openapi.json -o dist/openapi.json && redocly build-docs dist/openapi.json -o dist/index.html",
-        "test": "redocly lint"
-    }
+  "name": "@example/minimal",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/react": "^1.2.2",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "astro": "^1.6.13",
+    "rapidoc": "^9.3.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "sass": "^1.56.1"
+  }
 }
