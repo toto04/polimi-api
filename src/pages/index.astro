@@ -6,7 +6,7 @@ import { Header } from "../components/Header";
     <head>
         <meta charset="utf-8" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <script src="/rapidoc.js" is:inline></script>
+        <script src="rapidoc.js" is:inline></script>
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
         <title>Polimi API docs</title>
@@ -14,7 +14,7 @@ import { Header } from "../components/Header";
     <body>
         <Header client:load />
         <rapi-doc
-            spec-url="/openapi.json"
+            spec-url="openapi.json"
             render-style="read"
             show-curl-before-try="true"
             theme="light"
